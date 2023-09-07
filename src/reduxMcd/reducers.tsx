@@ -114,6 +114,7 @@ const cartReducer = (state = {}, action: any) => {
       const existingObject = state.cart.find((obj: any) => obj.email === email);
 
       console.log('---------- cart -------------');
+      
       console.log(existingObject);
 
       // If an object with the email exists, append the new items
