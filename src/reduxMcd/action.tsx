@@ -44,9 +44,9 @@ export const logoutFailure = (error: any) => ({
   error,
 });
 
-export const addToCartRequest = (email:any, items:any) => ({
+export const addToCartRequest = (email:any, items:any,cart:any) => ({
   type: 'ADD_TO_CART_REQUEST',
-  payload: { email, items },
+  payload: { email, items, cart },
 });
 
 export const addToCartSuccess = (email:any, items:any) => ({
@@ -59,7 +59,7 @@ export const removeFromCartRequest = (email:any, items:any) => ({
   payload: { email, items },
 });
 
-export const removeFromCartSucess = (email:any, itemId:any) => ({
+export const removeFromCartSuccess = (email:any, itemId:any) => ({
   type: 'REMOVE_FROM_CART_SUCCESS',
   payload: { email, itemId },
 });

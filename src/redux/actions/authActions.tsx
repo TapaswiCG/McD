@@ -49,4 +49,3 @@ export const logoutRequest = ()=> ({
 export const logoutSuccess = () => ({
   type: LOGOUT_SUCCESS,
 });
-

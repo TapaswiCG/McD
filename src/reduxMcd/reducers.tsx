@@ -8,7 +8,7 @@ const initialApiDataState = {
   error: '',
   isLogin: false,
   currentUser: null,
-  cart: [{email:'',items:[{}]}],
+  cart: [],
 };
 
 const loginReducer = (state = initialApiDataState, action: any) => {
@@ -90,7 +90,7 @@ const SignUpReducer = (state = initialApiDataState, action: any) => {
   }
 };
 
-const cartReducer = (state = {}, action: any) => {
+const cartReducer = (state = initialApiDataState, action: any) => {
   switch (action.type) {
     case 'ADD_TO_CART_REQUEST':
       return {
@@ -100,40 +100,50 @@ const cartReducer = (state = {}, action: any) => {
         error: '',
       };
     case 'ADD_TO_CART_SUCCESS':
-      const {email, items} = action.payload;
+      return {
+        ...state,
+        cart : action.payload,
+        loading: false,
+        error:null
+      }
+      // const {email, items} = action.payload;
 
-      console.log('---------- Success -------------');
-      console.log(state.cart);
-      console.log(email);
-      console.log(items);
-      console.log('-------------------------------');
+      // console.log('---------- Success -------------');
+      // console.log(state.cart);
+      // console.log(email);
+      // console.log(items);
+      // console.log('-------------------------------');
       
       // console.log(items);
 
       // Find an object with the matching email
-      const existingObject = state.cart.find((obj: any) => obj.email === email);
+      // const existingObject = state.cart.find((obj: any) => obj.email === email);
 
-      console.log('---------- cart -------------');
-      
-      console.log(existingObject);
+      // console.log('---------- cart -------------');
+      // console.log(existingObject);
 
-      // If an object with the email exists, append the new items
-      if (existingObject) {
-        console.log('---------- existing -------------');
-        console.log(existingObject);
-        existingObject.items.push(...items);
-      } else {
-        // If the email doesn't exist, create a new object and add the email and items
-        console.log('---------- avaliable -------------');
-        console.log(existingObject);
-        const newObject = {email, items: [...items]};
-        // state.cart.push(newObject);
-        console.log('--------pushes-------------');
-        console.log(newObject);
-        // console.log(state.cart);
-        
-      }
-      return [...cart];
+      // // If an object with the email exists, append the new items
+      // if (existingObject) {
+      //   console.log('---------- existing -------------');
+      //   console.log(existingObject);
+      //   existingObject.items.push(...items);
+      // } else {
+      //   // If the email doesn't exist, create a new object and add the email and items
+      //   console.log('---------- avaliable -------------');
+      //   console.log(existingObject);
+      //   const newObject = {email, items: [...items]};
+      //   state.cart.push(newObject);
+      //   console.log('--------pushes-------------');
+      //   console.log(newObject);
+      //   // console.log(state.cart);
+      // }
+      return {
+        ...state,
+        loading: false,
+        cart: [...state.cart],
+        error: null,
+      };
+      // return [...state.cart];
     default:
       return state;
   }

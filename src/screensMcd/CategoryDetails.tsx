@@ -57,8 +57,6 @@ const CategoryDetails: React.FC<CategoryDetailsProps> = ({route}) => {
   // console.log(userEmail);
 
   const handleAddToCart = (items:any) => {
-    console.log("handle to cart ");
-    console.log(items);
     dispatch(addToCartRequest(userEmail, items, cart));
   };
 
@@ -89,6 +87,9 @@ const CategoryDetails: React.FC<CategoryDetailsProps> = ({route}) => {
   useEffect(() =>{
     console.log("Checking if items are added to cart: ");
     console.log(cart)
+    console.log('====================================');
+    console.log(cart[0]?.items);
+    console.log('====================================');
   },[cart])
 
   return (
